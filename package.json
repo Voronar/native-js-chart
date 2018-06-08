@@ -1,0 +1,28 @@
+{
+  "name": "native-js-chart",
+  "version": "1.0.0",
+  "description": "native-js-chart",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db-server": "json-server --watch server/db.json",
+    "app-server": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Voronar/native-js-chart.git"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "Kirill A. Khalitov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Voronar/native-js-chart/issues"
+  },
+  "homepage": "https://github.com/Voronar/native-js-chart#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "json-server": "^0.13.0"
+  }
+}
