@@ -5,6 +5,9 @@ body, html {
   padding: 0;
 }
 
+button, select, div, span {
+  font-size: 1em;
+}
 #app {
   display: flex;
   height: 100%;
@@ -13,12 +16,24 @@ body, html {
 #sidebar {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 200px;
+  flex-shrink: 0;
   margin: 10px;
 }
 
 .btn {
   margin-bottom: 10px;
+}
+
+#avg {
+  width: 20px;
+  height: 20px;
+}
+
+.avg-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #chart-wrapper {
