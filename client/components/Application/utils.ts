@@ -36,6 +36,8 @@ export async function getPeriodData(service: () => Promise<ResponseData<Data[]>>
   return [];
 }
 
+export const getYearPart = (date = '') => date.split('-')[0];
+
 const reduceAvg = (p: number, c: Data) => p + c.v;
 
 export const getDataForPeriod = (data: Data[], period: string[], avg: boolean = false) => {
@@ -43,7 +45,7 @@ export const getDataForPeriod = (data: Data[], period: string[], avg: boolean = 
     return [];
   }
 
-  const filteredData = data.filter(item => period.includes(item.t.split('-')[0]));
+  const filteredData = data.filter(item => period.includes(getYearPart(item.t)));
 
   if (filteredData.length === 0) {
     return [];
@@ -57,8 +59,8 @@ export const getDataForPeriod = (data: Data[], period: string[], avg: boolean = 
   let avgAccum: Data[] = [];
 
   for (let i = 0; i < filteredData.length; ++i) {
-    const prevYear = i === 0 ? '' : filteredData[i - 1].t.split('-')[0];
-    const currentYear = i === 0 ? '' : filteredData[i].t.split('-')[0];
+    const prevYear = i === 0 ? '' : getYearPart(filteredData[i - 1].t);
+    const currentYear = i === 0 ? '' : getYearPart(filteredData[i].t);
 
     avgAccum.push(filteredData[i]);
     if (currentYear !== prevYear) {
@@ -74,3 +76,4 @@ export const getDataForPeriod = (data: Data[], period: string[], avg: boolean = 
 
   return avgData;
 };
+

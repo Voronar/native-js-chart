@@ -1,5 +1,5 @@
 import { getPrecipitations, getTemperatures } from 'api/services';
-import { getDataForPeriod, getPeriodData, makeSelectOption, setSelectOptions } from './utils';
+import { getDataForPeriod, getPeriodData, makeSelectOption, setSelectOptions, getYearPart } from './utils';
 import { Parameter, Period, State } from './types';
 import LineChart, { createLineChart } from 'components/LineChart';
 
@@ -91,8 +91,8 @@ export default class Application {
   private initSelectedOptions(parameter: Parameter) {
     if (this.state.periodData[parameter].length > 2) {
       const l = this.state.periodData[parameter].length - 1;
-      this.state.selectedPeriod.begin = this.state.periodData[parameter][0].t.split('-')[0];
-      this.state.selectedPeriod.end = this.state.periodData[parameter][l].t.split('-')[0];
+      this.state.selectedPeriod.begin = getYearPart(this.state.periodData[parameter][0].t);
+      this.state.selectedPeriod.end = getYearPart(this.state.periodData[parameter][l].t);
     }
   }
   private async updateData(parameter: Parameter) {
@@ -125,7 +125,7 @@ export default class Application {
 
     this.state.periodData[this.state.selectedParameter]
     .forEach((item) => {
-      const year = item.t.split('-')[0];
+      const year = getYearPart(item.t);
 
       !this.initialDateRange.includes(year) && this.initialDateRange.push(year);
     });
